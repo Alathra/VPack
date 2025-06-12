@@ -8,7 +8,7 @@ crate-api = { module = "io.github.milkdrinkers:crate-api", version.ref = "crate"
 crate-yaml = { module = "io.github.milkdrinkers:crate-yaml", version.ref = "crate" }
 colorparser = "io.github.milkdrinkers:colorparser-velocity:4.0.0-SNAPSHOT"
 github-api = "org.kohsuke:github-api:1.302"
-geyser = "org.geysermc.geyser:api:2.7.0-SNAPSHOT"
+geyser = "org.geysermc.geyser:api:2.7.1-SNAPSHOT"
 floodgate = "org.geysermc.floodgate:api:2.2.4-SNAPSHOT"
 bstats = "org.bstats:bstats-bukkit:3.1.0"
 
