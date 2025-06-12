@@ -14,6 +14,6 @@ bstats = "org.bstats:bstats-bukkit:3.1.0"
 
 [plugins]
 blossom = "net.kyori.blossom:2.1.0"
-jetbrains-gradle = "org.jetbrains.gradle.plugin.idea-ext:1.1.8"
+jetbrains-gradle = "org.jetbrains.gradle.plugin.idea-ext:1.1.10"
 run-velocity = "xyz.jpenilla.run-velocity:2.3.1"
 shadow = "com.gradleup.shadow:8.3.6"
