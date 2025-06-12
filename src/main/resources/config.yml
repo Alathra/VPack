@@ -1,5 +1,4 @@
 # Configuration for BetterServerResourcepack
-pack-uri: https://github.com/Alathra/Alathra-Resourcepack/releases/download/v1.22.54/Alathra-v1.22.54.zip
 
 # Always update the resource pack hash at startup
 # This setting makes sense for small resourcepacks, but can significantly increase boot time for larger packs.

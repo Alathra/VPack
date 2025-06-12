@@ -1,0 +1,19 @@
+[versions]
+crate = "4.0.0-RC.2"
+
+[libraries]
+velocity-api = "com.velocitypowered:velocity-api:3.4.0-SNAPSHOT"
+wordweaver = "io.github.milkdrinkers:wordweaver:0.0.5"
+crate-api = { module = "io.github.milkdrinkers:crate-api", version.ref = "crate" }
+crate-yaml = { module = "io.github.milkdrinkers:crate-yaml", version.ref = "crate" }
+colorparser = "io.github.milkdrinkers:colorparser-velocity:4.0.0-SNAPSHOT"
+github-api = "org.kohsuke:github-api:1.302"
+geyser = "org.geysermc.geyser:api:2.7.0-SNAPSHOT"
+floodgate = "org.geysermc.floodgate:api:2.2.4-SNAPSHOT"
+bstats = "org.bstats:bstats-bukkit:3.1.0"
+
+[plugins]
+blossom = "net.kyori.blossom:2.1.0"
+jetbrains-gradle = "org.jetbrains.gradle.plugin.idea-ext:1.1.8"
+run-velocity = "xyz.jpenilla.run-velocity:2.3.1"
+shadow = "com.gradleup.shadow:8.3.6"

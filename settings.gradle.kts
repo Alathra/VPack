@@ -1,12 +1,14 @@
-rootProject.name = "AlathraResourcePack"
-
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS) // Allow project repositories
+pluginManagement {
     repositories {
+        gradlePluginPortal()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }
-        maven("https://maven.athyrium.eu/releases")
-        maven("https://repo.papermc.io/repository/maven-public/")
-        maven("https://oss.sonatype.org/content/groups/public/")
     }
 }
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0" // allow automatic download of JDKs
+}
+
+rootProject.name = "VPack"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
