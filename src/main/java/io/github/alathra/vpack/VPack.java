@@ -52,7 +52,7 @@ public class VPack {
     @SuppressWarnings("unused")
     public void onProxyInitialization(ProxyInitializeEvent event) {
         configHandler = new ConfigHandler(instance);
-        packHandler = new PackHandler(this, proxy, logger, dataDirectory);
+        packHandler = new PackHandler(this, proxy, logger);
 
         handlers = List.of(
             configHandler,

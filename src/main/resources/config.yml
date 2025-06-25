@@ -1,13 +1,4 @@
-# Configuration for BetterServerResourcepack
-
-# Always update the resource pack hash at startup
-# This setting makes sense for small resourcepacks, but can significantly increase boot time for larger packs.
-force-hash-update-on-start: true
-
-# Size of the buffer used in calculating the pack hash.
-# Higher values may increase calculation speeds at the expense of memory consumption.
-# NOT USED!
-# pack-buffer-size: 8192
+# Configuration for VPack
 
 # This will auto-update the resourcepack link from GitHub releases based on interval in seconds
 github:
@@ -21,4 +12,4 @@ pack-info:
   required: true
 
   # Customizable prompt message
-  prompt: "Please download the resource pack!"
+  prompt: "<red><bold>Please download the resource pack!"

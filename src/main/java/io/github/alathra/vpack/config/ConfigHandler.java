@@ -12,8 +12,8 @@ import javax.inject.Singleton;
 @Singleton
 public class ConfigHandler implements Reloadable {
     private final VPack plugin;
-    private Config cfg;
-    private Config data;
+    private final Config cfg;
+    private final Config data;
 
     /**
      * Instantiates a new Config handler.

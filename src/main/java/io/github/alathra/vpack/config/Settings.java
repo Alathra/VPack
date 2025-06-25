@@ -12,14 +12,6 @@ public class Settings {
         Data.get().set("pack-uri", url);
     }
 
-    public static boolean getForceHashUpdateOnStart() {
-        return Cfg.get().getOrDefault("force-hash-update-on-start", true);
-    }
-
-    public static int getPackBufferSize() {
-        return Cfg.get().getOrDefault("pack-buffer-size", 8192);
-    }
-
     public static boolean getIsGithubEnabled() {
         return Cfg.get().getOrDefault("github.enabled", false);
     }

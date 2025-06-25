@@ -4,7 +4,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.scheduler.ScheduledTask;
 import io.github.alathra.vpack.VPack;
 import io.github.alathra.vpack.config.Settings;
-import io.github.alathra.vpack.pack.resource.PackService;
+import io.github.alathra.vpack.pack.resource.PackInfo;
 import org.kohsuke.github.GHAsset;
 import org.kohsuke.github.GHRelease;
 import org.kohsuke.github.GHRepository;
@@ -19,17 +19,17 @@ public class GithubUpdateTask implements Runnable {
     private final VPack plugin;
     private final ProxyServer proxy;
     private final Logger logger;
-    private final PackService packService;
+    private final PackInfo packInfo;
 
     private ScheduledTask scheduledTask;
     private boolean cancelled = false;
 
-    public GithubUpdateTask(VPack plugin, ProxyServer proxy, Logger logger, PackService packService) {
+    public GithubUpdateTask(VPack plugin, ProxyServer proxy, Logger logger, PackInfo packInfo) {
         super();
         this.plugin = plugin;
         this.proxy = proxy;
         this.logger = logger;
-        this.packService = packService;
+        this.packInfo = packInfo;
     }
 
     public void start(long initialDelaySeconds, long intervalSeconds) {
@@ -55,14 +55,15 @@ public class GithubUpdateTask implements Runnable {
 
     private String getLatestRelease() {
         try {
-            logger.info("Trying to get latest version...");
-
             GitHub gitHub = GitHub.connectAnonymously();
             String username = Settings.getGithubUsername();
             String repoName = Settings.getGithubRepository();
 
             GHRepository repository = gitHub.getRepository(username + "/" + repoName);
+            logger.debug("Fetching latest version from GitHub... at url {}", repository.getUrl());
+
             GHRelease release = repository.getLatestRelease();
+            logger.debug("Found release {} on GitHub!", release.getTagName());
 
             GHAsset latestAsset = release.listAssets().toList().get(0);
             if (latestAsset != null)
@@ -79,21 +80,23 @@ public class GithubUpdateTask implements Runnable {
      */
     @Override
     public void run() {
+        logger.info("Fetching latest version from GitHub...");
         final String downloadLink = getLatestRelease();
-        if (downloadLink == null) return;
+        if (downloadLink == null)
+            return;
 
         try {
             final URL url = new URL(downloadLink);
-            final boolean isNewPack = packService.updatePackUrl(url);
+            final boolean isNewPack = packInfo.updateUrl(url);
 
-            if (isNewPack)
-                packService.sendPackToAllPlayers();
+            if (isNewPack) {
+                packInfo.distribute().sendToAllPlayers();
+                logger.info("Found new version from GitHub, distributing to players...");
+            }
         } catch (java.net.MalformedURLException e) {
             logger.error("Malformed GitHub asset URL: {}", e.getMessage());
-            return;
         } catch (IOException e) {
             logger.error("Failed to update pack url from GitHub: {}", e.getMessage());
-            return;
         }
     }
 }
