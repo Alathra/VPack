@@ -92,6 +92,8 @@ public class GithubUpdateTask implements Runnable {
             if (isNewPack) {
                 packInfo.distribute().sendToAllPlayers();
                 logger.info("Found new version from GitHub, distributing to players...");
+            } else {
+                logger.info("No new version found on GitHub, current pack is up to date.");
             }
         } catch (java.net.MalformedURLException e) {
             logger.error("Malformed GitHub asset URL: {}", e.getMessage());

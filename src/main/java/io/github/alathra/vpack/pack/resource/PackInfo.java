@@ -3,6 +3,7 @@ package io.github.alathra.vpack.pack.resource;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import io.github.alathra.vpack.config.Settings;
+import io.github.alathra.vpack.utils.HexUtil;
 import io.github.alathra.vpack.utils.ResourcePackUtil;
 import io.github.milkdrinkers.colorparser.velocity.ColorParser;
 import net.kyori.adventure.resource.ResourcePackInfo;
@@ -124,13 +125,19 @@ public final class PackInfo {
      * @throws IOException if there is an error fetching the SHA-1 hash from the new URL.
      * @apiNote This method is designed to prevent unnecessary updates when the pack at the new URL is identical to the current one. It internally calls {@link #updateSha1()} when required.
      */
-    public boolean updateUrl(URL newUrl) throws IOException {
-        // Prevent overriding with identical pack
-        if (getUrl().isPresent() && getUrl().get().equals(newUrl)) {
-            Optional<byte[]> remoteSha1 = ResourcePackUtil.fetchSha1FromUrl(newUrl).join();
+    public boolean updateUrl(@Nullable final URL newUrl) throws IOException {
+        final URL currentUrl = getUrl().orElse(null);
 
-            if (remoteSha1.isPresent() && getSha1().isPresent() && Arrays.equals(getSha1().get(), remoteSha1.get())) {
-                return false; // The new pack at the URL is identical to the current one
+        if (currentUrl != null && newUrl != null) { // Check if both URLs are set
+            try {
+                if (!currentUrl.toURI().equals(newUrl.toURI())) { // Check if the URLs are different
+                    final byte[] currentSha1 = getSha1().orElse(null);
+                    final byte[] remoteSha1 = ResourcePackUtil.fetchSha1FromUrl(newUrl).join().orElse(null);
+                    if (currentSha1 != null && remoteSha1 != null && HexUtil.toString(currentSha1).equals(HexUtil.toString(remoteSha1))) {
+                        return false; // The new pack at the URL is identical to the current one
+                    }
+                }
+            } catch (URISyntaxException ignored) {
             }
         }
 
