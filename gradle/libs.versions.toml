@@ -2,7 +2,7 @@
 crate = "4.0.0-RC.2"
 
 [libraries]
-velocity-api = "com.velocitypowered:velocity-api:3.4.0-SNAPSHOT"
+velocity-api = "com.velocitypowered:velocity-api:4.0.0-SNAPSHOT"
 wordweaver = "io.github.milkdrinkers:wordweaver:0.0.5"
 crate-api = { module = "io.github.milkdrinkers:crate-api", version.ref = "crate" }
 crate-yaml = { module = "io.github.milkdrinkers:crate-yaml", version.ref = "crate" }
