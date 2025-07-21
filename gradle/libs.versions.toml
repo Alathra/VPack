@@ -1,5 +1,5 @@
 [versions]
-crate = "4.0.0-RC.2"
+crate = "4.0.0-RC.3"
 
 [libraries]
 velocity-api = "com.velocitypowered:velocity-api:3.4.0-SNAPSHOT"
