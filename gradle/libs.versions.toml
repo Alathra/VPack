@@ -10,7 +10,7 @@ colorparser = "io.github.milkdrinkers:colorparser-velocity:4.1.0"
 github-api = "org.kohsuke:github-api:1.330"
 geyser = "org.geysermc.geyser:api:2.9.2-SNAPSHOT"
 floodgate = "org.geysermc.floodgate:api:2.2.5-SNAPSHOT"
-bstats = "org.bstats:bstats-bukkit:3.1.0"
+bstats = "org.bstats:bstats-bukkit:3.2.0"
 
 [plugins]
 blossom = "net.kyori.blossom:2.2.0"
